@@ -1,0 +1,6 @@
+KNOWNBUG
+aws_array_eq_c_str_ignore_case_contract.c
+--safety ../../source/byte_buf.c -I ../../include
+^EXIT=0$
+^SIGNAL=0$
+--

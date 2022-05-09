@@ -407,7 +407,11 @@ bool aws_array_eq_ignore_case(
 
     const uint8_t *bytes_a = array_a;
     const uint8_t *bytes_b = array_b;
-    for (size_t i = 0; i < len_a; ++i) {
+    for (size_t i = 0; i < len_a; ++i)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(bytes_a, len_a))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(bytes_b, len_b))
+      __CPROVER_loop_invariant(len_a == len_b)
+    {
         if (s_tolower_table[bytes_a[i]] != s_tolower_table[bytes_b[i]]) {
             return false;
         }
@@ -447,7 +451,9 @@ bool aws_array_eq_c_str_ignore_case(const void *const array, const size_t array_
     const uint8_t *array_bytes = array;
     const uint8_t *str_bytes = (const uint8_t *)c_str;
 
-    for (size_t i = 0; i < array_len; ++i) {
+    for (size_t i = 0; i < array_len; ++i)
+      __CPROVER_loop_invariant(__CPROVER_is_cstring(str_bytes + i))
+      {
         uint8_t s = str_bytes[i];
         if (s == '\0') {
             return false;
@@ -475,7 +481,9 @@ bool aws_array_eq_c_str(const void *const array, const size_t array_len, const c
     const uint8_t *array_bytes = array;
     const uint8_t *str_bytes = (const uint8_t *)c_str;
 
-    for (size_t i = 0; i < array_len; ++i) {
+    for (size_t i = 0; i < array_len; ++i)
+      __CPROVER_loop_invariant(__CPROVER_is_cstring(str_bytes + i))
+    {
         uint8_t s = str_bytes[i];
         if (s == '\0') {
             return false;
