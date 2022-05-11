@@ -1,0 +1,168 @@
+Parsing source/allocator.c
+aws_mem_acquire
+aws_mem_acquire_many
+aws_mem_calloc
+aws_mem_realloc
+
+Parsing source/allocator_sba.c
+aws_small_block_allocator_bytes_active
+aws_small_block_allocator_bytes_reserved
+aws_small_block_allocator_new
+
+Parsing source/bus.c
+s_bus_destroy_listener_list
+
+Parsing source/byte_buf.c
+aws_array_eq_c_str
+aws_array_eq_c_str_ignore_case
+aws_array_eq_ignore_case
+aws_byte_buf_advance
+aws_byte_buf_append_with_lookup
+aws_byte_buf_cat
+aws_byte_buf_init
+aws_byte_buf_init_cache_and_update_cursors
+aws_byte_buf_init_copy
+aws_byte_buf_init_copy_from_cursor
+aws_byte_buf_reserve
+aws_byte_buf_reserve_relative
+aws_byte_cursor_compare_lookup
+aws_byte_cursor_find_exact
+aws_byte_cursor_left_trim_pred
+aws_byte_cursor_next_split
+aws_byte_cursor_right_trim_pred
+aws_byte_cursor_split_on_char_n
+aws_hash_array_ignore_case
+
+Parsing source/cache.c
+
+Parsing source/codegen.c
+aws_array_list_clean_up
+aws_array_list_clean_up_secure
+aws_array_list_init_dynamic
+aws_is_mem_zeroed
+aws_linked_list_is_valid_deep
+aws_linked_list_node_reset
+aws_text_detect_encoding
+
+Parsing source/command_line_parser.c
+aws_cli_dispatch_on_subcommand
+
+Parsing source/common.c
+
+Parsing source/condition_variable.c
+aws_condition_variable_wait_for_pred
+aws_condition_variable_wait_pred
+
+Parsing source/date_time.c
+aws_date_time_init_from_str
+aws_date_time_init_from_str_cursor
+s_get_time_struct
+
+Parsing source/device_random.c
+
+Parsing source/encoding.c
+aws_base64_decode
+aws_base64_encode
+aws_hex_decode
+aws_hex_encode
+aws_hex_encode_append_dynamic
+
+Parsing source/error.c
+
+Parsing source/fifo_cache.c
+
+Parsing source/file.c
+aws_byte_buf_init_from_file
+aws_directory_entry_iterator_destroy
+
+Parsing source/hash_table.c
+aws_hash_byte_cursor_ptr
+aws_hash_callback_c_str_eq
+aws_hash_callback_string_eq
+aws_hash_iter_begin
+aws_hash_string
+aws_hash_table_clear
+aws_hash_table_eq
+aws_hash_table_find
+aws_hash_table_foreach
+aws_hash_table_init
+aws_hash_table_move
+aws_hash_table_remove
+aws_hash_table_remove_element
+
+Parsing source/json.c
+
+Parsing source/lifo_cache.c
+
+Parsing source/linked_hash_table.c
+aws_linked_hash_table_clean_up
+
+Parsing source/log_channel.c
+
+Parsing source/log_formatter.c
+
+Parsing source/log_writer.c
+
+Parsing source/logging.c
+aws_log_level_to_string
+aws_string_to_log_level
+aws_thread_id_t_to_string
+
+Parsing source/lru_cache.c
+
+Parsing source/math.c
+aws_add_size_checked_varargs
+
+Parsing source/memtrace.c
+aws_mem_tracer_dump
+aws_mem_tracer_new
+
+Parsing source/priority_queue.c
+aws_priority_queue_backpointers_valid_deep
+aws_priority_queue_init_dynamic
+aws_priority_queue_init_static
+aws_priority_queue_pop
+aws_priority_queue_remove
+aws_priority_queue_top
+
+Parsing source/process_common.c
+aws_run_command
+aws_run_command_result_init
+
+Parsing source/promise.c
+
+Parsing source/ref_count.c
+
+Parsing source/ring_buffer.c
+aws_ring_buffer_acquire
+aws_ring_buffer_clean_up
+aws_ring_buffer_init
+aws_ring_buffer_release
+
+Parsing source/statistics.c
+
+Parsing source/string.c
+aws_secure_strlen
+aws_string_new_from_array
+
+Parsing source/task_scheduler.c
+aws_task_init
+aws_task_scheduler_clean_up
+aws_task_scheduler_init
+aws_task_scheduler_schedule_future
+
+Parsing source/thread_scheduler.c
+aws_thread_scheduler_cancel_task
+
+Parsing source/thread_shared.c
+aws_thread_join_all_managed
+
+Parsing source/uuid.c
+aws_uuid_init_from_str
+aws_uuid_to_str
+
+Parsing source/xml_parser.c
+aws_xml_node_traverse
+aws_xml_parser_parse
+s_advance_to_closing_tag
+s_node_next_sibling
