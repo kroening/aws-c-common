@@ -1,0 +1,191 @@
+#!/bin/bash
+
+doit() {
+  echo "**" ${SOURCE} $1
+  # cprover -I ../../include ${SOURCE} harnesses/${1}.c
+  if [ ! -e harnesses/${1}.c ] ; then
+    HEADER=`basename ${SOURCE} .c`.h
+    cat << EOM > harnesses/${1}.c
+// Source: ${SOURCE}
+// Function: $1
+
+#include <aws/common/${HEADER}>
+
+int main() {
+  return 0;
+}
+EOM
+  fi
+
+  cprover --safety -I ../../include ../../${SOURCE} harnesses/${1}.c \
+    2>&1 > logs/${1}.log
+}
+
+SOURCE=source/allocator.c
+doit aws_mem_acquire
+doit aws_mem_acquire_many
+doit aws_mem_calloc
+doit aws_mem_realloc
+
+SOURCE=source/allocator_sba.c
+doit aws_small_block_allocator_bytes_active
+doit aws_small_block_allocator_bytes_reserved
+doit aws_small_block_allocator_new
+
+SOURCE=source/bus.c
+doit s_bus_destroy_listener_list
+
+SOURCE=source/byte_buf.c
+doit aws_array_eq_c_str
+doit aws_array_eq_c_str_ignore_case
+doit aws_array_eq_ignore_case
+doit aws_byte_buf_advance
+doit aws_byte_buf_append_with_lookup
+doit aws_byte_buf_cat
+doit aws_byte_buf_init
+doit aws_byte_buf_init_cache_and_update_cursors
+doit aws_byte_buf_init_copy
+doit aws_byte_buf_init_copy_from_cursor
+doit aws_byte_buf_reserve
+doit aws_byte_buf_reserve_relative
+doit aws_byte_cursor_compare_lookup
+doit aws_byte_cursor_find_exact
+doit aws_byte_cursor_left_trim_pred
+doit aws_byte_cursor_next_split
+doit aws_byte_cursor_right_trim_pred
+doit aws_byte_cursor_split_on_char_n
+doit aws_hash_array_ignore_case
+
+SOURCE=source/cache.c
+
+SOURCE=source/codegen.c
+doit aws_array_list_clean_up
+doit aws_array_list_clean_up_secure
+doit aws_array_list_init_dynamic
+doit aws_is_mem_zeroed
+doit aws_linked_list_is_valid_deep
+doit aws_linked_list_node_reset
+doit aws_text_detect_encoding
+
+SOURCE=source/command_line_parser.c
+doit aws_cli_dispatch_on_subcommand
+
+SOURCE=source/common.c
+
+SOURCE=source/condition_variable.c
+doit aws_condition_variable_wait_for_pred
+doit aws_condition_variable_wait_pred
+
+SOURCE=source/date_time.c
+doit aws_date_time_init_from_str
+doit aws_date_time_init_from_str_cursor
+doit s_get_time_struct
+
+SOURCE=source/device_random.c
+
+SOURCE=source/encoding.c
+doit aws_base64_decode
+doit aws_base64_encode
+doit aws_hex_decode
+doit aws_hex_encode
+doit aws_hex_encode_append_dynamic
+
+SOURCE=source/error.c
+
+SOURCE=source/fifo_cache.c
+
+SOURCE=source/file.c
+doit aws_byte_buf_init_from_file
+doit aws_directory_entry_iterator_destroy
+
+SOURCE=source/hash_table.c
+doit aws_hash_byte_cursor_ptr
+doit aws_hash_callback_c_str_eq
+doit aws_hash_callback_string_eq
+doit aws_hash_iter_begin
+doit aws_hash_string
+doit aws_hash_table_clear
+doit aws_hash_table_eq
+doit aws_hash_table_find
+doit aws_hash_table_foreach
+doit aws_hash_table_init
+doit aws_hash_table_move
+doit aws_hash_table_remove
+doit aws_hash_table_remove_element
+
+SOURCE=source/json.c
+
+SOURCE=source/lifo_cache.c
+
+SOURCE=source/linked_hash_table.c
+doit aws_linked_hash_table_clean_up
+
+SOURCE=source/log_channel.c
+
+SOURCE=source/log_formatter.c
+
+SOURCE=source/log_writer.c
+
+SOURCE=source/logging.c
+doit aws_log_level_to_string
+doit aws_string_to_log_level
+doit aws_thread_id_t_to_string
+
+SOURCE=source/lru_cache.c
+
+SOURCE=source/math.c
+doit aws_add_size_checked_varargs
+
+SOURCE=source/memtrace.c
+doit aws_mem_tracer_dump
+doit aws_mem_tracer_new
+
+SOURCE=source/priority_queue.c
+doit aws_priority_queue_backpointers_valid_deep
+doit aws_priority_queue_init_dynamic
+doit aws_priority_queue_init_static
+doit aws_priority_queue_pop
+doit aws_priority_queue_remove
+doit aws_priority_queue_top
+
+SOURCE=source/process_common.c
+doit aws_run_command
+doit aws_run_command_result_init
+
+SOURCE=source/promise.c
+
+SOURCE=source/ref_count.c
+
+SOURCE=source/ring_buffer.c
+doit aws_ring_buffer_acquire
+doit aws_ring_buffer_clean_up
+doit aws_ring_buffer_init
+doit aws_ring_buffer_release
+
+SOURCE=source/statistics.c
+
+SOURCE=source/string.c
+doit aws_secure_strlen
+doit aws_string_new_from_array
+
+SOURCE=source/task_scheduler.c
+doit aws_task_init
+doit aws_task_scheduler_clean_up
+doit aws_task_scheduler_init
+doit aws_task_scheduler_schedule_future
+
+SOURCE=source/thread_scheduler.c
+doit aws_thread_scheduler_cancel_task
+
+SOURCE=source/thread_shared.c
+doit aws_thread_join_all_managed
+
+SOURCE=source/uuid.c
+doit aws_uuid_init_from_str
+doit aws_uuid_to_str
+
+SOURCE=source/xml_parser.c
+doit aws_xml_node_traverse
+doit aws_xml_parser_parse
+doit s_advance_to_closing_tag
+doit s_node_next_sibling
