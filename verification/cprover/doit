@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cprover --safety -I ../../include ../../${1} harnesses/${2}.c

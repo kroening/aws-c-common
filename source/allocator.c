@@ -255,6 +255,11 @@ int aws_mem_realloc(struct aws_allocator *allocator, void **ptr, size_t oldsize,
 /* Wraps a CFAllocator around aws_allocator. For Mac only. */
 #ifdef __MACH__
 
+CFStringRef __builtin___CFStringMakeConstantString(const char *)
+{
+  return 0;
+}
+
 static CFStringRef s_cf_allocator_description = CFSTR("CFAllocator wrapping aws_allocator.");
 
 /* note we don't have a standard specification stating sizeof(size_t) == sizeof(void *) so we have some extra casts */

@@ -1,8 +1,15 @@
 // Source: source/allocator_sba.c
 // Function: aws_small_block_allocator_bytes_reserved
 
-#include <aws/common/allocator_sba.h>
+#include <aws/common/allocator.h>
+
+// size_t aws_small_block_allocator_bytes_reserved(struct aws_allocator *sba_allocator);
 
 int main() {
+
+  struct aws_allocator *sba_allocator;
+
+  aws_small_block_allocator_bytes_reserved(sba_allocator);
+
   return 0;
 }

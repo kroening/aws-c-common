@@ -3,6 +3,16 @@
 
 #include <aws/common/uuid.h>
 
+// int aws_uuid_init_from_str(
+//     struct aws_uuid *uuid,
+//     const struct aws_byte_cursor *uuid_str);
+
 int main() {
+
+  struct aws_uuid *uuid;
+  const struct aws_byte_cursor *uuid_str;
+
+  aws_uuid_init_from_str(uuid, uuid_str);
+
   return 0;
 }
