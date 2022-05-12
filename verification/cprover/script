@@ -20,6 +20,8 @@ EOM
   ./doit ${SOURCE} ${1} > logs/${1}.log 2>&1
 }
 
+if [ ! -e logs/. ] ; then mkdir logs ; fi
+
 SOURCE=source/allocator.c
 doit aws_mem_acquire
 doit aws_mem_acquire_many
