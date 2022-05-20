@@ -128,7 +128,7 @@ doit aws_hash_callback_string_eq
 doit aws_hash_iter_begin
 skip aws_hash_string
 doit aws_hash_table_clear
-doit aws_hash_table_eq
+skip aws_hash_table_eq
 skip aws_hash_table_find
 skip aws_hash_table_foreach
 skip aws_hash_table_init

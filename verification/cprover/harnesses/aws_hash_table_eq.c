@@ -16,8 +16,8 @@ int main() {
   const struct aws_hash_table *b;
   aws_hash_callback_eq_fn *value_eq;
 
-  __CPROVER_assume(CPROVER_aws_has_table_is_valid(a));
-  __CPROVER_assume(CPROVER_aws_has_table_is_valid(b));
+  __CPROVER_assume(CPROVER_aws_hash_table_is_valid(a));
+  __CPROVER_assume(CPROVER_aws_hash_table_is_valid(b));
 
   aws_hash_table_eq(a, b, value_eq);
 
