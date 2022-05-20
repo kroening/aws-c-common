@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 doit() {
-  echo "**" ${SOURCE} $1
+  printf "** ${SOURCE} $1"
   # cprover -I ../../include ${SOURCE} harnesses/${1}.c
   if [ ! -e harnesses/${1}.c ] ; then
     HEADER=`basename ${SOURCE} .c`.h
@@ -18,6 +18,15 @@ EOM
   fi
 
   ./doit ${SOURCE} ${1} > logs/${1}.log 2>&1
+  RESULT=$?
+  if [ $RESULT -eq 0 ] ; then
+    printf ' \e[32mOK\e[0m'
+  elif [ $RESULT -eq 10 ] ; then
+    printf ' \e[31mREFUTED\e[0m'
+  else
+    printf ' \e[1;31mERROR\e[0m'
+  fi
+  printf '\n'
 }
 
 if [ ! -e logs/. ] ; then mkdir logs ; fi
