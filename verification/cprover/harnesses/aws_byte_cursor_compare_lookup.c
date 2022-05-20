@@ -3,6 +3,8 @@
 
 #include <aws/common/byte_buf.h>
 
+#include "aws_byte_buf.inc"
+
 // int aws_byte_cursor_compare_lookup(
 //     const struct aws_byte_cursor *lhs,
 //     const struct aws_byte_cursor *rhs,

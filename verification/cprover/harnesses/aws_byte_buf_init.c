@@ -11,8 +11,10 @@
 int main() {
 
   struct aws_byte_buf *buf;
-  struct aws_allocator *allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
   size_t capacity;
+
+  __CPROVER_assume(__CPROVER_rw_ok(buf));
 
   aws_byte_buf_init(buf, allocator, capacity);
 

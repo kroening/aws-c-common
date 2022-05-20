@@ -8,6 +8,8 @@
 //     struct aws_allocator *allocator,
 //     struct aws_byte_cursor src);
 
+#include "aws_byte_buf.inc"
+
 int main() {
 
   struct aws_byte_buf *dest;

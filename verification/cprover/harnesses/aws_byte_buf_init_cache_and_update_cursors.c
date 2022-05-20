@@ -11,7 +11,7 @@
 int main() {
 
   struct aws_byte_buf *dest;
-  struct aws_allocator *allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
 
   aws_byte_buf_init_cache_and_update_cursors(dest, allocator);
 
