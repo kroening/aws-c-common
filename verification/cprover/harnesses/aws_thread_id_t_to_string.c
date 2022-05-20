@@ -14,6 +14,8 @@ int main() {
   char *buffer;
   size_t bufsz;
 
+  __CPROVER_assume(__CPROVER_w_ok(buffer, bufsz));
+
   aws_thread_id_t_to_string(thread_id, buffer, bufsz);
 
   return 0;

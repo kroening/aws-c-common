@@ -10,9 +10,11 @@
 
 int main() {
 
-  struct aws_allocator *allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
   const uint8_t *bytes;
   size_t len;
+
+  __CPROVER_assume(__CPROVER_r_ok(bytes, len));
 
   aws_string_new_from_array(allocator, bytes, len);
 
