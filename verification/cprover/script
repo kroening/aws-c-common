@@ -101,7 +101,7 @@ doit aws_condition_variable_wait_pred
 
 SOURCE=source/date_time.c
 skip aws_date_time_init_from_str
-doit aws_date_time_init_from_str_cursor
+skip aws_date_time_init_from_str_cursor
 doit s_get_time_struct
 
 SOURCE=source/device_random.c
