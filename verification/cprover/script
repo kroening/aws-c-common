@@ -17,8 +17,11 @@ int main() {
 EOM
   fi
 
+  start=`perl -MTime::HiRes=time -e 'printf "%.9f\n", time'`
   ./doit ${SOURCE} ${1} > logs/${1}.log 2>&1
   RESULT=$?
+  end=`perl -MTime::HiRes=time -e 'printf "%.9f\n", time'`
+
   if [ $RESULT -eq 0 ] ; then
     printf ' \e[32mOK\e[0m'
   elif [ $RESULT -eq 10 ] ; then
@@ -26,6 +29,16 @@ EOM
   else
     printf ' \e[1;31mERROR\e[0m'
   fi
+
+  runtime=$( echo "$end - $start" | bc -l )
+  printf " %f" $runtime
+
+  printf '\n'
+}
+
+skip() {
+  printf "** ${SOURCE} $1"
+  printf ' \e[32mSKIPPED\e[0m'
   printf '\n'
 }
 
@@ -40,7 +53,7 @@ doit aws_mem_realloc
 SOURCE=source/allocator_sba.c
 doit aws_small_block_allocator_bytes_active
 doit aws_small_block_allocator_bytes_reserved
-doit aws_small_block_allocator_new
+skip aws_small_block_allocator_new
 
 SOURCE=source/bus.c
 doit s_bus_destroy_listener_list
@@ -53,17 +66,17 @@ doit aws_byte_buf_advance
 doit aws_byte_buf_append_with_lookup
 doit aws_byte_buf_cat
 doit aws_byte_buf_init
-# doit aws_byte_buf_init_cache_and_update_cursors
+skip aws_byte_buf_init_cache_and_update_cursors
 doit aws_byte_buf_init_copy
 doit aws_byte_buf_init_copy_from_cursor
 doit aws_byte_buf_reserve
-# doit aws_byte_buf_reserve_relative
+skip aws_byte_buf_reserve_relative
 doit aws_byte_cursor_compare_lookup
 doit aws_byte_cursor_find_exact
 doit aws_byte_cursor_left_trim_pred
 doit aws_byte_cursor_next_split
 doit aws_byte_cursor_right_trim_pred
-doit aws_byte_cursor_split_on_char_n
+skip aws_byte_cursor_split_on_char_n
 doit aws_hash_array_ignore_case
 
 SOURCE=source/cache.c
@@ -87,18 +100,18 @@ doit aws_condition_variable_wait_for_pred
 doit aws_condition_variable_wait_pred
 
 SOURCE=source/date_time.c
-# doit aws_date_time_init_from_str
+skip aws_date_time_init_from_str
 doit aws_date_time_init_from_str_cursor
 doit s_get_time_struct
 
 SOURCE=source/device_random.c
 
 SOURCE=source/encoding.c
-doit aws_base64_decode
-doit aws_base64_encode
-doit aws_hex_decode
-doit aws_hex_encode
-doit aws_hex_encode_append_dynamic
+skip aws_base64_decode
+skip aws_base64_encode
+skip aws_hex_decode
+skip aws_hex_encode
+skip aws_hex_encode_append_dynamic
 
 SOURCE=source/error.c
 
@@ -109,18 +122,18 @@ doit aws_byte_buf_init_from_file
 doit aws_directory_entry_iterator_destroy
 
 SOURCE=source/hash_table.c
-doit aws_hash_byte_cursor_ptr
+skip aws_hash_byte_cursor_ptr
 doit aws_hash_callback_c_str_eq
 doit aws_hash_callback_string_eq
 doit aws_hash_iter_begin
-# doit aws_hash_string
+skip aws_hash_string
 doit aws_hash_table_clear
 doit aws_hash_table_eq
-doit aws_hash_table_find
-doit aws_hash_table_foreach
-doit aws_hash_table_init
+skip aws_hash_table_find
+skip aws_hash_table_foreach
+skip aws_hash_table_init
 doit aws_hash_table_move
-doit aws_hash_table_remove
+skip aws_hash_table_remove
 doit aws_hash_table_remove_element
 
 SOURCE=source/json.c
@@ -147,15 +160,15 @@ SOURCE=source/math.c
 doit aws_add_size_checked_varargs
 
 SOURCE=source/memtrace.c
-doit aws_mem_tracer_dump
+skip aws_mem_tracer_dump
 doit aws_mem_tracer_new
 
 SOURCE=source/priority_queue.c
 doit aws_priority_queue_backpointers_valid_deep
-doit aws_priority_queue_init_dynamic
+skip aws_priority_queue_init_dynamic
 doit aws_priority_queue_init_static
-doit aws_priority_queue_pop
-doit aws_priority_queue_remove
+skip aws_priority_queue_pop
+skip aws_priority_queue_remove
 doit aws_priority_queue_top
 
 SOURCE=source/process_common.c
@@ -168,7 +181,7 @@ SOURCE=source/ref_count.c
 
 SOURCE=source/ring_buffer.c
 doit aws_ring_buffer_acquire
-doit aws_ring_buffer_clean_up
+skip aws_ring_buffer_clean_up
 doit aws_ring_buffer_init
 doit aws_ring_buffer_release
 
@@ -188,14 +201,14 @@ SOURCE=source/thread_scheduler.c
 doit aws_thread_scheduler_cancel_task
 
 SOURCE=source/thread_shared.c
-doit aws_thread_join_all_managed
+skip aws_thread_join_all_managed
 
 SOURCE=source/uuid.c
 doit aws_uuid_init_from_str
 doit aws_uuid_to_str
 
 SOURCE=source/xml_parser.c
-doit aws_xml_node_traverse
-doit aws_xml_parser_parse
+skip aws_xml_node_traverse
+skip aws_xml_parser_parse
 doit s_advance_to_closing_tag
-doit s_node_next_sibling
+skip s_node_next_sibling
