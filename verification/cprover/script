@@ -38,7 +38,7 @@ EOM
 
 skip() {
   printf "** ${SOURCE} $1"
-  printf ' \e[32mSKIPPED\e[0m'
+  printf ' \e[37mSKIPPED\e[0m'
   printf '\n'
 }
 
