@@ -9,6 +9,8 @@ int main() {
 
   const void *buf;
   size_t bufsize;
+
+  __CPROVER_assume(__CPROVER_r_ok(buf, bufsize));
   
   aws_is_mem_zeroed(buf, bufsize);
 

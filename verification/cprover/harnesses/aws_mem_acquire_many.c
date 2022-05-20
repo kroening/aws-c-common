@@ -9,7 +9,7 @@
 
 int main() {
 
-  struct aws_allocator *allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
   size_t count;
 
   aws_mem_acquire_many(allocator, count);

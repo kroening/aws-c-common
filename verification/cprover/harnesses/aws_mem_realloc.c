@@ -11,7 +11,7 @@
 
 int main() {
 
-  struct aws_allocator *allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
   void **ptr;
   size_t oldsize;
   size_t newsize;

@@ -11,6 +11,9 @@ int main() {
   size_t max_read_len;
   size_t *str_len;
 
+  __CPROVER_assume(__CPROVER_r_ok(str, max_read_len));
+  __CPROVER_assume(__CPROVER_w_ok(str_len));
+
   aws_secure_strlen(str, max_read_len, str_len);
 
   return 0;

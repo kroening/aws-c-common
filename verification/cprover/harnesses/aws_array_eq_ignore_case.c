@@ -16,6 +16,9 @@ int main() {
   const void *const array_b;
   const size_t len_b;
 
+  __CPROVER_assume(__CPROVER_r_ok(array_a, len_a));
+  __CPROVER_assume(__CPROVER_r_ok(array_b, len_b));
+
   aws_array_eq_ignore_case(array_a, len_a, array_b, len_b);
 
   return 0;

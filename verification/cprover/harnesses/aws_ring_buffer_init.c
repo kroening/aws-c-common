@@ -14,6 +14,8 @@ int main() {
   struct aws_allocator *allocator;
   size_t size;
 
+  __CPROVER_assume(__CPROVER_w_ok(ring_buf));
+
   aws_ring_buffer_init(ring_buf, allocator, size);
 
   return 0;

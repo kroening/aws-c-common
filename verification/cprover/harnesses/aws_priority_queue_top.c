@@ -12,6 +12,9 @@ int main() {
   const struct aws_priority_queue *queue;
   void **item;
 
+  __CPROVER_assume(__CPROVER_r_ok(queue));
+  __CPROVER_assume(__CPROVER_w_ok(item));
+
   aws_priority_queue_top(queue, item);
 
   return 0;

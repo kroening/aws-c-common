@@ -14,6 +14,9 @@ int main() {
   const size_t array_len;
   const char *const c_str;
 
+  __CPROVER_assume(__CPROVER_r_ok(array, array_len));
+  __CPROVER_assume(__CPROVER_is_cstring(c_str));
+
   aws_array_eq_c_str(array, array_len, c_str);
 
   return 0;
