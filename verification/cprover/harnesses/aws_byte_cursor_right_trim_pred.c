@@ -12,6 +12,8 @@ int main() {
   const struct aws_byte_cursor *source;
   aws_byte_predicate_fn *predicate;
 
+  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(source));
+
   aws_byte_cursor_right_trim_pred(source, predicate);
 
   return 0;

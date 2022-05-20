@@ -16,6 +16,8 @@ int main() {
   size_t n;
   struct aws_array_list *output;
 
+  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(input_str));
+
   aws_byte_cursor_split_on_char_n(input_str, split_on, n, output);
 
   return 0;

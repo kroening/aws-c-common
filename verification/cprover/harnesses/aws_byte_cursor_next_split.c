@@ -14,6 +14,9 @@ int main() {
   char split_on;
   struct aws_byte_cursor *substr;
 
+  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(input_str));
+  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(substr));
+
   aws_byte_cursor_next_split(input_str, split_on, substr);
 
   return 0;
