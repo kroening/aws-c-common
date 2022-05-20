@@ -193,7 +193,7 @@ doit aws_string_new_from_array
 
 SOURCE=source/task_scheduler.c
 doit aws_task_init
-doit aws_task_scheduler_clean_up
+skip aws_task_scheduler_clean_up
 doit aws_task_scheduler_init
 doit aws_task_scheduler_schedule_future
 
