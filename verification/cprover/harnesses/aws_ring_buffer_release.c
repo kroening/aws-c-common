@@ -1,6 +1,7 @@
 // Source: source/ring_buffer.c
 // Function: aws_ring_buffer_release
 
+#include <aws/common/byte_buf.h>
 #include <aws/common/ring_buffer.h>
 
 #include "aws_byte_buf.inc"

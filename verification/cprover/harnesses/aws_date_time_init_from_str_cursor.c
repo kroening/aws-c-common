@@ -1,6 +1,7 @@
 // Source: source/date_time.c
 // Function: aws_date_time_init_from_str_cursor
 
+#include <aws/common/byte_buf.h>
 #include <aws/common/date_time.h>
 
 #include "aws_byte_buf.inc"
