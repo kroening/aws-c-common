@@ -17,7 +17,7 @@ int main() {
   const struct aws_byte_buf *src;
 
   __CPROVER_assume(__CPROVER_rw_ok(dest));
-  __CPROVER_assume(aws_byte_buf_is_valid(src));
+  __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(src));
 
   aws_byte_buf_init_copy(dest, allocator, src);
 

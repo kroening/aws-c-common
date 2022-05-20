@@ -12,7 +12,7 @@ int main() {
   struct aws_byte_buf *dest;
   size_t number_of_args;
 
-  __CPROVER_assume(aws_byte_buf_is_valid(dest));
+  __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(dest));
 
   aws_byte_buf_cat(dest, number_of_args);
 

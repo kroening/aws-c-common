@@ -12,7 +12,7 @@ int main() {
   struct aws_byte_buf *buffer;
   size_t requested_capacity;
 
-  __CPROVER_assume(aws_byte_buf_is_valid(buffer));
+  __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(buffer));
 
   aws_byte_buf_reserve(buffer, requested_capacity);
 

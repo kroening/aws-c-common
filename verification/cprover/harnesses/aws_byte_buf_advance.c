@@ -16,8 +16,8 @@ int main() {
   struct aws_byte_buf *const output;
   const size_t len;
 
-  __CPROVER_assume(aws_byte_buf_is_valid(buffer));
-  __CPROVER_assume(aws_byte_buf_is_valid(output));
+  __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(buffer));
+  __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(output));
 
   aws_byte_buf_advance(buffer, output, len);
 
