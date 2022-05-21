@@ -12,11 +12,15 @@
 int main() {
 
   struct aws_allocator *allocator = aws_default_allocator();
-  void **ptr;
   size_t oldsize;
   size_t newsize;
 
-  aws_mem_realloc(allocator, ptr, oldsize, newsize);
+  void *ptr;
+  __CPROVER_assume(__CPROVER_DYNAMIC_OBJECT(ptr));
+  __CPROVER_assume(__CPROVER_LIVE_OBJECT(ptr));
+  __CPROVER_assume(__CPROVER_POINTER_OFFSET(ptr) == 0);
+
+  aws_mem_realloc(allocator, &ptr, oldsize, newsize);
 
   return 0;
 }
