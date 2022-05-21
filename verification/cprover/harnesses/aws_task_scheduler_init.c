@@ -10,7 +10,9 @@
 int main() {
 
   struct aws_task_scheduler *scheduler;
-  struct aws_allocator *alloc;
+  struct aws_allocator *alloc = aws_default_allocator();
+
+  __CPROVER_assume(__CPROVER_rw_ok(scheduler));
 
   aws_task_scheduler_init(scheduler, alloc);
 

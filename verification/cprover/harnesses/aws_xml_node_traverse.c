@@ -16,6 +16,9 @@ int main() {
   aws_xml_parser_on_node_encountered_fn *on_node_encountered;
   void *user_data;
 
+  __CPROVER_assume(__CPROVER_rw_ok(parser));
+  __CPROVER_assume(__CPROVER_rw_ok(node));
+
   aws_xml_node_traverse(parser, node, on_node_encountered, user_data);
 
   return 0;

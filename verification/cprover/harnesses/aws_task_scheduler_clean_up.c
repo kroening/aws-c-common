@@ -9,6 +9,8 @@ int main() {
 
   struct aws_task_scheduler *scheduler;
 
+  __CPROVER_assume(__CPROVER_rw_ok(scheduler));
+
   aws_task_scheduler_clean_up(scheduler);
 
   return 0;

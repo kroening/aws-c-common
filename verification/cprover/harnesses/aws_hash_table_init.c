@@ -24,6 +24,8 @@ int main() {
   aws_hash_callback_destroy_fn *destroy_key_fn;
   aws_hash_callback_destroy_fn *destroy_value_fn;
 
+  __CPROVER_assume(__CPROVER_rw_ok(map));
+
   aws_hash_table_init(
     map, alloc, size, hash_fn, equals_fn, destroy_key_fn, destroy_value_fn);
 

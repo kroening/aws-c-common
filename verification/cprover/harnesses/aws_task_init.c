@@ -16,6 +16,8 @@ int main() {
   void *arg;
   const char *type_tag;
 
+  __CPROVER_assume(__CPROVER_rw_ok(task));
+
   aws_task_init(task, fn, arg, type_tag);
 
   return 0;

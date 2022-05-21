@@ -14,6 +14,9 @@ int main() {
   struct aws_task *task;
   uint64_t time_to_run;
 
+  __CPROVER_assume(__CPROVER_rw_ok(scheduler));
+  __CPROVER_assume(__CPROVER_rw_ok(task));
+
   aws_task_scheduler_schedule_future(scheduler, task, time_to_run);
 
   return 0;
