@@ -17,7 +17,7 @@ int main() {
   __CPROVER_assume(CPROVER_aws_hash_table_is_valid(to));
   __CPROVER_assume(CPROVER_aws_hash_table_is_valid(from));
 
-  void aws_hash_table_move(to, from);
+  aws_hash_table_move(to, from);
 
   return 0;
 }
