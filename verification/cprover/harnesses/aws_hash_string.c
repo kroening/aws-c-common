@@ -9,6 +9,8 @@ int main() {
 
   const void *item;
 
+  __CPROVER_assume(CPROVER_aws_string_is_valid(item));
+
   aws_hash_string(item);
 
   return 0;
