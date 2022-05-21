@@ -452,7 +452,9 @@ bool aws_array_eq_c_str_ignore_case(const void *const array, const size_t array_
     const uint8_t *str_bytes = (const uint8_t *)c_str;
 
     for (size_t i = 0; i < array_len; ++i)
+      __CPROVER_loop_invariant(i>=0 && i<=array_len)
       __CPROVER_loop_invariant(__CPROVER_is_cstring(str_bytes + i))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(array_bytes, array_len))
       {
         uint8_t s = str_bytes[i];
         if (s == '\0') {
@@ -482,7 +484,9 @@ bool aws_array_eq_c_str(const void *const array, const size_t array_len, const c
     const uint8_t *str_bytes = (const uint8_t *)c_str;
 
     for (size_t i = 0; i < array_len; ++i)
+      __CPROVER_loop_invariant(i>=0 && i<=array_len)
       __CPROVER_loop_invariant(__CPROVER_is_cstring(str_bytes + i))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(array, array_len))
     {
         uint8_t s = str_bytes[i];
         if (s == '\0') {
@@ -640,7 +644,11 @@ int aws_byte_buf_append_with_lookup(
         return aws_raise_error(AWS_ERROR_DEST_COPY_TOO_SMALL);
     }
 
-    for (size_t i = 0; i < from->len; ++i) {
+    for (size_t i = 0; i < from->len; ++i)
+      __CPROVER_loop_invariant(i>=0 && i<=from->len)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(from->ptr, from->len))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(lookup_table, 0x100))
+    {
         to->buffer[to->len + i] = lookup_table[from->ptr[i]];
     }
 
