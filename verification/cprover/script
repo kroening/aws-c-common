@@ -72,7 +72,7 @@ doit aws_byte_buf_init_copy_from_cursor
 doit aws_byte_buf_reserve
 skip aws_byte_buf_reserve_relative
 doit aws_byte_cursor_compare_lookup
-doit aws_byte_cursor_find_exact
+skip aws_byte_cursor_find_exact
 doit aws_byte_cursor_left_trim_pred
 doit aws_byte_cursor_next_split
 doit aws_byte_cursor_right_trim_pred
