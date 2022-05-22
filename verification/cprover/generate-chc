@@ -49,11 +49,11 @@ doit aws_byte_buf_advance
 doit aws_byte_buf_append_with_lookup
 doit aws_byte_buf_cat
 doit aws_byte_buf_init
-# doit aws_byte_buf_init_cache_and_update_cursors
+doit aws_byte_buf_init_cache_and_update_cursors
 doit aws_byte_buf_init_copy
 doit aws_byte_buf_init_copy_from_cursor
 doit aws_byte_buf_reserve
-# doit aws_byte_buf_reserve_relative
+doit aws_byte_buf_reserve_relative
 doit aws_byte_cursor_compare_lookup
 doit aws_byte_cursor_find_exact
 doit aws_byte_cursor_left_trim_pred
@@ -83,7 +83,7 @@ doit aws_condition_variable_wait_for_pred
 doit aws_condition_variable_wait_pred
 
 SOURCE=source/date_time.c
-# doit aws_date_time_init_from_str
+doit aws_date_time_init_from_str
 doit aws_date_time_init_from_str_cursor
 doit s_get_time_struct
 
@@ -109,7 +109,7 @@ doit aws_hash_byte_cursor_ptr
 doit aws_hash_callback_c_str_eq
 doit aws_hash_callback_string_eq
 doit aws_hash_iter_begin
-# doit aws_hash_string
+doit aws_hash_string
 doit aws_hash_table_clear
 doit aws_hash_table_eq
 doit aws_hash_table_find
