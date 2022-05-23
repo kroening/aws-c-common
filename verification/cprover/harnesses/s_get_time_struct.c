@@ -10,6 +10,8 @@ int main() {
   struct aws_date_time *dt;
   bool local_time;
 
+  __CPROVER_assume(__CPROVER_rw_ok(dt));
+
   s_get_time_struct(dt, local_time);
 
   return 0;
