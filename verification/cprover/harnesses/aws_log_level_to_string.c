@@ -13,6 +13,7 @@ int main() {
   const char **level_string;
 
   __CPROVER_assume(__CPROVER_w_ok(level_string));
+  __CPROVER_assume(log_level >= 0 && log_level < AWS_LL_COUNT);
 
   aws_log_level_to_string(log_level, level_string);
 
