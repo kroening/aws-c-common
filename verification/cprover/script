@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 doit() {
   printf "** $*"
-  LAST=${*: -1}
+  LAST=${@: -1}
 
   start=`perl -MTime::HiRes=time -e 'printf "%.9f\n", time'`
   ./doit $* > logs/${LAST}.log 2>&1
