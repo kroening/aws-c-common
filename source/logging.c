@@ -321,7 +321,10 @@ int aws_thread_id_t_to_string(aws_thread_id_t thread_id, char *buffer, size_t bu
     AWS_ERROR_PRECONDITION(buffer && AWS_MEM_IS_WRITABLE(buffer, bufsz));
     size_t current_index = 0;
     unsigned char *bytes = (unsigned char *)&thread_id;
-    for (size_t i = sizeof(aws_thread_id_t); i != 0; --i) {
+    for (size_t i = sizeof(aws_thread_id_t); i != 0; --i)
+      __CPROVER_loop_invariant(i>=0 && i<=sizeof(aws_thread_id_t))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(bytes, sizeof(aws_thread_id_t)))
+    {
         unsigned char c = bytes[i - 1];
         int written = snprintf(buffer + current_index, bufsz - current_index, "%02x", c);
         if (written < 0) {
