@@ -1,3 +1,13 @@
 #!/bin/bash
 
-cprover --safety -I ../../include ../../${1} harnesses/${2}.c
+FILES=""
+ARGS=""
+for arg in "$@" ; do
+  case "$arg" in
+    -*)       ARGS+=" $arg";;
+    source/*) FILES+=" ../../$arg";;
+    *)        FILES+=" harnesses/${arg}.c";;
+  esac
+done
+
+cprover --safety -I ../../include $ARGS $FILES
