@@ -23,7 +23,10 @@ bool aws_is_mem_zeroed(const void *buf, size_t bufsize) {
     const uint64_t *buf_u64 = (const uint64_t *)buf;
     const size_t num_u64_checks = bufsize / 8;
     size_t i;
-    for (i = 0; i < num_u64_checks; ++i) {
+    for (i = 0; i < num_u64_checks; ++i)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(buf_u64, bufsize))
+      __CPROVER_loop_invariant(num_u64_checks == bufsize / 8)
+    {
         if (buf_u64[i]) {
             return false;
         }
@@ -35,7 +38,9 @@ bool aws_is_mem_zeroed(const void *buf, size_t bufsize) {
 
     /* Check 8 bits at a time */
     const uint8_t *buf_u8 = (const uint8_t *)buf;
-    for (i = 0; i < bufsize; ++i) {
+    for (i = 0; i < bufsize; ++i)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(buf_u8, bufsize))
+    {
         if (buf_u8[i]) {
             return false;
         }
