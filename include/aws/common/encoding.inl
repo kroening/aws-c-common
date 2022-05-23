@@ -124,7 +124,9 @@ AWS_STATIC_IMPL enum aws_text_encoding aws_text_detect_encoding(const uint8_t *b
             return AWS_TEXT_UTF16;
     }
     size_t idx = 0;
-    for (; idx < size; ++idx) {
+    for (; idx < size; ++idx)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(bytes, size))
+    {
         if (bytes[idx] & 0x80) {
             return AWS_TEXT_UNKNOWN;
         }

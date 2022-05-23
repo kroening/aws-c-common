@@ -12,6 +12,8 @@ int main() {
   const uint8_t *bytes;
   size_t size;
 
+  __CPROVER_assume(__CPROVER_r_ok(bytes, size));
+
   aws_text_detect_encoding(bytes, size);
 
   return 0;
