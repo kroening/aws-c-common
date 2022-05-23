@@ -189,6 +189,7 @@ SOURCE=source/statistics.c
 
 SOURCE=source/string.c
 doit aws_secure_strlen
+SOURCE="source/string.c source/allocator.c"
 doit aws_string_new_from_array
 
 SOURCE=source/task_scheduler.c
