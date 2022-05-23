@@ -181,7 +181,7 @@ SOURCE=source/ref_count.c
 
 SOURCE=source/ring_buffer.c
 doit aws_ring_buffer_acquire
-skip aws_ring_buffer_clean_up
+doit aws_ring_buffer_clean_up
 doit aws_ring_buffer_init
 doit aws_ring_buffer_release
 

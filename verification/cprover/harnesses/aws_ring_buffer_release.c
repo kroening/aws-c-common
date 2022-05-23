@@ -16,7 +16,7 @@ int main() {
   struct aws_ring_buffer *ring_buffer;
   struct aws_byte_buf *buf;
 
-  __CPROVER_assume(CPROVER_aws_ring_buf_is_valid(ring_buffer));
+  __CPROVER_assume(CPROVER_aws_ring_buffer_is_valid(ring_buffer));
   __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(buf));
 
   aws_ring_buffer_release(ring_buffer, buf);
