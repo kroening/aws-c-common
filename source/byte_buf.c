@@ -486,7 +486,7 @@ bool aws_array_eq_c_str(const void *const array, const size_t array_len, const c
     for (size_t i = 0; i < array_len; ++i)
       __CPROVER_loop_invariant(i>=0 && i<=array_len)
       __CPROVER_loop_invariant(__CPROVER_is_cstring(str_bytes + i))
-      __CPROVER_loop_invariant(__CPROVER_r_ok(array, array_len))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(array_bytes, array_len))
     {
         uint8_t s = str_bytes[i];
         if (s == '\0') {
