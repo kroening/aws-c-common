@@ -13,8 +13,11 @@
 int main() {
 
   struct aws_byte_buf *out_buf;
-  struct aws_allocator *alloc;
+  struct aws_allocator *alloc = aws_default_allocator();
   const char *filename;
+
+  __CPROVER_assume(__CPROVER_rw_ok(out_buf));
+  __CPROVER_assume(__CPROVER_is_cstring(filename));
 
   aws_byte_buf_init_from_file(out_buf, alloc, filename);
 
