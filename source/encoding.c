@@ -92,8 +92,9 @@ int aws_hex_encode(const struct aws_byte_cursor *AWS_RESTRICT to_encode, struct 
     }
 
     size_t written = 0;
-    for (size_t i = 0; i < to_encode->len; ++i) {
-
+    for (size_t i = 0; i < to_encode->len; ++i)
+      __CPROVER_loop_invariant(__CPROVER_w_ok(output->buffer, encoded_len))
+    {
         output->buffer[written++] = HEX_CHARS[to_encode->ptr[i] >> 4 & 0x0f];
         output->buffer[written++] = HEX_CHARS[to_encode->ptr[i] & 0x0f];
     }
