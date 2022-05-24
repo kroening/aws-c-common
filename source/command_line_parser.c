@@ -146,6 +146,7 @@ int aws_cli_dispatch_on_subcommand(
     if (argc >= 2) {
         struct aws_byte_cursor arg_name = aws_byte_cursor_from_c_str(argv[1]);
         for (int i = 0; i < table_length; ++i)
+          __CPROVER_loop_invariant(i>=0 && i<=table_length)
           __CPROVER_loop_invariant(__CPROVER_r_ok(dispatch_table, sizeof(*dispatch_table)*table_length))
         {
             struct aws_byte_cursor cmd_name = aws_byte_cursor_from_c_str(dispatch_table[i].command_name);
