@@ -78,7 +78,7 @@ doit source/codegen.c aws_linked_list_node_reset
 doit source/codegen.c aws_text_detect_encoding
 
 # source/command_line_parser.c
-doit source/command_line_parser.c aws_cli_dispatch_on_subcommand
+doit source/command_line_parser.c source/byte_buf.c aws_cli_dispatch_on_subcommand
 
 # source/common.c
 
