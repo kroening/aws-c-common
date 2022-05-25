@@ -11,7 +11,7 @@
 
 int main() {
 
-  struct aws_allocator *allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
   struct aws_allocator *deprecated;
   enum aws_mem_trace_level level;
   size_t frames_per_stack;
