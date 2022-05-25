@@ -511,7 +511,13 @@ uint64_t aws_hash_array_ignore_case(const void *array, const size_t len) {
     const uint8_t *end = (i == NULL) ? NULL : (i + len);
 
     uint64_t hash = fnv_offset_basis;
-    while (i != end) {
+
+    while (i != end)
+      __CPROVER_loop_invariant(i >= array && i <= end)
+      __CPROVER_loop_invariant(i!=NULL ==> __CPROVER_r_ok(array, len))
+      __CPROVER_loop_invariant(__CPROVER_same_object(i, array))
+      __CPROVER_loop_invariant(i!=NULL ==> end == array + len)
+    {
         const uint8_t lower = s_tolower_table[*i++];
         hash ^= lower;
 #ifdef CBMC
