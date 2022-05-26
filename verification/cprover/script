@@ -57,7 +57,7 @@ skip source/byte_buf.c aws_byte_buf_init_cache_and_update_cursors
 doit source/byte_buf.c aws_byte_buf_init_copy
 doit source/byte_buf.c aws_byte_buf_init_copy_from_cursor
 doit source/byte_buf.c aws_byte_buf_reserve
-skip source/byte_buf.c aws_byte_buf_reserve_relative
+doit source/byte_buf.c aws_byte_buf_reserve_relative
 doit source/byte_buf.c aws_byte_cursor_compare_lookup
 skip source/byte_buf.c aws_byte_cursor_find_exact
 doit source/byte_buf.c aws_byte_cursor_left_trim_pred
