@@ -153,7 +153,7 @@ skip source/memtrace.c aws_mem_tracer_new VA_ARGS
 # source/priority_queue.c
 skip source/priority_queue.c aws_priority_queue_backpointers_valid_deep HARNESS
 skip source/priority_queue.c aws_priority_queue_init_dynamic SLOW
-skip source/priority_queue.c aws_priority_queue_init_static LINKED_LIST
+doit source/priority_queue.c aws_priority_queue_init_static
 skip source/priority_queue.c aws_priority_queue_pop LINKED_LIST
 skip source/priority_queue.c aws_priority_queue_remove LINKED_LIST
 skip source/priority_queue.c aws_priority_queue_top LINKED_LIST
