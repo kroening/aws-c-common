@@ -33,52 +33,52 @@ if [ ! -e logs/. ] ; then mkdir logs ; fi
 
 # source/allocator.c
 doit source/allocator.c aws_mem_acquire
-doit source/allocator.c aws_mem_acquire_many
-doit source/allocator.c aws_mem_calloc
-doit source/allocator.c aws_mem_realloc
+skip source/allocator.c aws_mem_acquire_many VA_ARGS
+skip source/allocator.c aws_mem_calloc SLOW
+skip source/allocator.c aws_mem_realloc SLOW
 
 # source/allocator_sba.c
-doit source/allocator_sba.c aws_small_block_allocator_bytes_active
-doit source/allocator_sba.c aws_small_block_allocator_bytes_reserved
-skip source/allocator_sba.c aws_small_block_allocator_new
+skip source/allocator_sba.c source/allocator.c aws_small_block_allocator_bytes_active SIMPLIFIER
+skip source/allocator_sba.c aws_small_block_allocator_bytes_reserved SLOW
+skip source/allocator_sba.c aws_small_block_allocator_new SLOW
 
 # source/bus.c
-doit source/bus.c s_bus_destroy_listener_list
+skip source/bus.c s_bus_destroy_listener_list LINKED_LIST
 
 # source/byte_buf.c
 doit source/byte_buf.c aws_array_eq_c_str
 doit source/byte_buf.c aws_array_eq_c_str_ignore_case
 doit source/byte_buf.c aws_array_eq_ignore_case
 doit source/byte_buf.c aws_byte_buf_advance
-doit source/byte_buf.c aws_byte_buf_append_with_lookup
-doit source/byte_buf.c aws_byte_buf_cat
+skip source/byte_buf.c aws_byte_buf_append_with_lookup INVARIANT
+skip source/byte_buf.c aws_byte_buf_cat VA_ARGS
 doit source/byte_buf.c aws_byte_buf_init
-skip source/byte_buf.c aws_byte_buf_init_cache_and_update_cursors
+skip source/byte_buf.c aws_byte_buf_init_cache_and_update_cursors VA_ARGS
 doit source/byte_buf.c aws_byte_buf_init_copy
 doit source/byte_buf.c aws_byte_buf_init_copy_from_cursor
 doit source/byte_buf.c aws_byte_buf_reserve
 doit source/byte_buf.c aws_byte_buf_reserve_relative
-doit source/byte_buf.c aws_byte_cursor_compare_lookup
-skip source/byte_buf.c aws_byte_cursor_find_exact
-doit source/byte_buf.c aws_byte_cursor_left_trim_pred
-doit source/byte_buf.c aws_byte_cursor_next_split
-doit source/byte_buf.c aws_byte_cursor_right_trim_pred
-skip source/byte_buf.c aws_byte_cursor_split_on_char_n
+skip source/byte_buf.c aws_byte_cursor_compare_lookup INVARIANT
+skip source/byte_buf.c aws_byte_cursor_find_exact SLOW
+skip source/byte_buf.c aws_byte_cursor_left_trim_pred INVARIANT
+skip source/byte_buf.c aws_byte_cursor_next_split HARNESS
+skip source/byte_buf.c aws_byte_cursor_right_trim_pred INVARIANT
+skip source/byte_buf.c aws_byte_cursor_split_on_char_n SLOW
 doit source/byte_buf.c aws_hash_array_ignore_case
 
 # source/cache.c
 
 # source/codegen.c
-doit source/codegen.c aws_array_list_clean_up
-doit source/codegen.c aws_array_list_clean_up_secure
+skip source/codegen.c aws_array_list_clean_up LINKED_LIST
+skip source/codegen.c aws_array_list_clean_up_secure LINKED_LIST
 doit source/codegen.c aws_array_list_init_dynamic
 doit source/codegen.c aws_is_mem_zeroed
 doit source/codegen.c aws_linked_list_is_valid_deep
-doit source/codegen.c aws_linked_list_node_reset
+skip source/codegen.c aws_linked_list_node_reset LINKED_LIST
 doit source/codegen.c aws_text_detect_encoding
 
 # source/command_line_parser.c
-skip source/command_line_parser.c source/byte_buf.c aws_cli_dispatch_on_subcommand
+skip source/command_line_parser.c source/byte_buf.c aws_cli_dispatch_on_subcommand QUANTIFIERS
 
 # source/common.c
 
@@ -87,48 +87,48 @@ doit source/condition_variable.c aws_condition_variable_wait_for_pred
 doit source/condition_variable.c aws_condition_variable_wait_pred
 
 # source/date_time.c
-skip source/date_time.c aws_date_time_init_from_str
-skip source/date_time.c aws_date_time_init_from_str_cursor
+skip source/date_time.c aws_date_time_init_from_str SLOW
+skip source/date_time.c aws_date_time_init_from_str_cursor SLOW
 doit source/date_time.c s_get_time_struct
 
 # source/device_random.c
 
 # source/encoding.c
-skip source/encoding.c aws_base64_decode
-skip source/encoding.c aws_base64_encode
-skip source/encoding.c aws_hex_decode
-skip source/encoding.c aws_hex_encode
-skip source/encoding.c aws_hex_encode_append_dynamic
+skip source/encoding.c aws_base64_decode SIMPLIFIER
+skip source/encoding.c aws_base64_encode SLOW
+skip source/encoding.c aws_hex_decode SLOW
+skip source/encoding.c aws_hex_encode SLOW
+skip source/encoding.c aws_hex_encode_append_dynamic SLOW
 
 # source/error.c
 
 # source/fifo_cache.c
 
 # source/file.c
-skip source/file.c source/allocator.c source/byte_buf.c aws_byte_buf_init_from_file
-doit source/file.c aws_directory_entry_iterator_destroy
+skip source/file.c source/allocator.c source/byte_buf.c aws_byte_buf_init_from_file SIMPLIFIER
+skip source/file.c aws_directory_entry_iterator_destroy LINKED_LIST
 
 # source/hash_table.c
-skip source/hash_table.c aws_hash_byte_cursor_ptr
+skip source/hash_table.c aws_hash_byte_cursor_ptr SLOW
 doit source/hash_table.c aws_hash_callback_c_str_eq
 doit source/hash_table.c aws_hash_callback_string_eq
-doit source/hash_table.c aws_hash_iter_begin
-skip source/hash_table.c aws_hash_string
-doit source/hash_table.c aws_hash_table_clear
-skip source/hash_table.c aws_hash_table_eq
-skip source/hash_table.c aws_hash_table_find
-skip source/hash_table.c aws_hash_table_foreach
-skip source/hash_table.c aws_hash_table_init
-doit source/hash_table.c aws_hash_table_move
-skip source/hash_table.c aws_hash_table_remove
-doit source/hash_table.c aws_hash_table_remove_element
+skip source/hash_table.c aws_hash_iter_begin LINKED_LIST
+skip source/hash_table.c aws_hash_string SLOW
+skip source/hash_table.c aws_hash_table_clear LINKED_LIST
+skip source/hash_table.c aws_hash_table_eq LINKED_LIST
+skip source/hash_table.c aws_hash_table_find LINKED_LIST
+skip source/hash_table.c aws_hash_table_foreach LINKED_LIST
+skip source/hash_table.c aws_hash_table_init SLOW
+skip source/hash_table.c aws_hash_table_move LINKED_LIST
+skip source/hash_table.c aws_hash_table_remove LINKED_LIST
+skip source/hash_table.c aws_hash_table_remove_element LINKED_LIST
 
 # source/json.c
 
 # source/lifo_cache.c
 
 # source/linked_hash_table.c
-doit source/linked_hash_table.c aws_linked_hash_table_clean_up
+skip source/linked_hash_table.c source/hash_table.c aws_linked_hash_table_clean_up LINKED_LIST
 
 # source/log_channel.c
 
@@ -144,33 +144,33 @@ doit source/logging.c aws_thread_id_t_to_string
 # source/lru_cache.c
 
 # source/math.c
-doit source/math.c aws_add_size_checked_varargs
+skip source/math.c aws_add_size_checked_varargs VA_ARGS
 
 # source/memtrace.c
-skip source/memtrace.c aws_mem_tracer_dump
-doit source/memtrace.c aws_mem_tracer_new
+skip source/memtrace.c aws_mem_tracer_dump SLOW
+skip source/memtrace.c aws_mem_tracer_new VA_ARGS
 
 # source/priority_queue.c
-doit source/priority_queue.c aws_priority_queue_backpointers_valid_deep
-skip source/priority_queue.c aws_priority_queue_init_dynamic
-doit source/priority_queue.c aws_priority_queue_init_static
-skip source/priority_queue.c aws_priority_queue_pop
-skip source/priority_queue.c aws_priority_queue_remove
-doit source/priority_queue.c aws_priority_queue_top
+skip source/priority_queue.c aws_priority_queue_backpointers_valid_deep HARNESS
+skip source/priority_queue.c aws_priority_queue_init_dynamic SLOW
+skip source/priority_queue.c aws_priority_queue_init_static LINKED_LIST
+skip source/priority_queue.c aws_priority_queue_pop LINKED_LIST
+skip source/priority_queue.c aws_priority_queue_remove LINKED_LIST
+skip source/priority_queue.c aws_priority_queue_top LINKED_LIST
 
 # source/process_common.c
 doit source/process_common.c aws_run_command
-doit source/process_common.c aws_run_command_result_init
+doit source/process_common.c source/allocator.c aws_run_command_result_init
 
 # source/promise.c
 
 # source/ref_count.c
 
 # source/ring_buffer.c
-doit source/ring_buffer.c aws_ring_buffer_acquire
-doit source/ring_buffer.c aws_ring_buffer_clean_up
-doit source/ring_buffer.c aws_ring_buffer_init
-doit source/ring_buffer.c aws_ring_buffer_release
+skip source/ring_buffer.c aws_ring_buffer_acquire SLOW
+skip source/ring_buffer.c aws_ring_buffer_clean_up SLOW
+skip source/ring_buffer.c aws_ring_buffer_init PROPERTYBUG
+skip source/ring_buffer.c aws_ring_buffer_release SLOW
 
 # source/statistics.c
 
@@ -180,22 +180,22 @@ doit source/string.c source/allocator.c aws_string_new_from_array
 
 # source/task_scheduler.c
 doit source/task_scheduler.c aws_task_init
-skip source/task_scheduler.c aws_task_scheduler_clean_up
+skip source/task_scheduler.c source/priority_queue.c aws_task_scheduler_clean_up SLOW
 doit source/task_scheduler.c aws_task_scheduler_init
-doit source/task_scheduler.c aws_task_scheduler_schedule_future
+skip source/task_scheduler.c aws_task_scheduler_schedule_future SIMPLIFIER
 
 # source/thread_scheduler.c
-doit source/thread_scheduler.c aws_thread_scheduler_cancel_task
+skip source/thread_scheduler.c aws_thread_scheduler_cancel_task LINKED_LIST
 
 # source/thread_shared.c
-skip source/thread_shared.c aws_thread_join_all_managed
+skip source/thread_shared.c aws_thread_join_all_managed LINKED_LIST
 
 # source/uuid.c
-doit source/uuid.c aws_uuid_init_from_str
+skip source/uuid.c aws_uuid_init_from_str SSCANF
 doit source/uuid.c aws_uuid_to_str
 
 # source/xml_parser.c
-skip source/xml_parser.c aws_xml_node_traverse
-skip source/xml_parser.c aws_xml_parser_parse
-doit source/xml_parser.c s_advance_to_closing_tag
-skip source/xml_parser.c s_node_next_sibling
+skip source/xml_parser.c aws_xml_node_traverse SLOW
+skip source/xml_parser.c aws_xml_parser_parse SLOW
+skip source/xml_parser.c s_advance_to_closing_tag LINKED_LIST
+skip source/xml_parser.c s_node_next_sibling SLOW
