@@ -155,7 +155,7 @@ skip source/priority_queue.c aws_priority_queue_backpointers_valid_deep HARNESS
 skip source/priority_queue.c aws_priority_queue_init_dynamic SLOW
 doit source/priority_queue.c aws_priority_queue_init_static
 skip source/priority_queue.c source/array_list.c aws_priority_queue_pop SIMPLIFIER
-skip source/priority_queue.c aws_priority_queue_remove LINKED_LIST
+skip source/priority_queue.c source/array_list.c aws_priority_queue_remove SIMPLIFIER
 doit source/priority_queue.c aws_priority_queue_top
 
 # source/process_common.c
