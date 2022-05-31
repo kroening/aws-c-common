@@ -12,9 +12,11 @@
 int main() {
 
   struct aws_array_list *AWS_RESTRICT list;
-  struct aws_allocator *alloc;
+  struct aws_allocator *alloc = aws_default_allocator();
   size_t initial_item_allocation;
   size_t item_size;
+
+  __CPROVER_assume(__CPROVER_rw_ok(list));
 
   aws_array_list_init_dynamic(list, alloc, initial_item_allocation, item_size);
 

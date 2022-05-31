@@ -7,7 +7,8 @@
 
 int main() {
 
-  struct aws_allocator *sba_allocator;
+  struct aws_allocator *allocator = aws_default_allocator();
+  struct aws_allocator *sba_allocator = aws_small_block_allocator_new(allocator, 0);
 
   aws_small_block_allocator_bytes_active(sba_allocator);
 

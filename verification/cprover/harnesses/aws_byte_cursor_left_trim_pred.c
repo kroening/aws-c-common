@@ -9,10 +9,17 @@
 //      const struct aws_byte_cursor *source,
 //      aws_byte_predicate_fn *predicate);
 
+bool nondet_bool();
+
+bool my_predicate(uint8_t)
+{
+  return nondet_bool();
+}
+
 int main() {
 
   const struct aws_byte_cursor *source;
-  aws_byte_predicate_fn *predicate;
+  aws_byte_predicate_fn *predicate = my_predicate;
 
   __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(source));
 

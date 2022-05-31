@@ -17,7 +17,7 @@ int main() {
   struct aws_byte_cursor src;
 
   __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(dest));
-  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(src));
+  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(&src));
 
   aws_byte_buf_init_copy_from_cursor(dest, allocator, src);
 

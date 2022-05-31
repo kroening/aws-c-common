@@ -7,7 +7,7 @@ void s_bus_destroy_listener_list(void *data);
 
 int main() {
 
-  void *data;
+  struct listener_list *data;
 
   s_bus_destroy_listener_list(data);
 

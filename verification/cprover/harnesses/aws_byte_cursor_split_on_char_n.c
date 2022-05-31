@@ -3,6 +3,8 @@
 
 #include <aws/common/byte_buf.h>
 
+#include "aws_byte_buf.inc"
+
 // int aws_byte_cursor_split_on_char_n(
 //     const struct aws_byte_cursor *AWS_RESTRICT input_str,
 //     char split_on,
