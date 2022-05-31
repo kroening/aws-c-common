@@ -74,7 +74,7 @@ skip source/codegen.c aws_array_list_clean_up_secure LINKED_LIST
 doit source/codegen.c aws_array_list_init_dynamic
 doit source/codegen.c aws_is_mem_zeroed
 doit source/codegen.c aws_linked_list_is_valid_deep
-skip source/codegen.c aws_linked_list_node_reset LINKED_LIST
+doit source/codegen.c aws_linked_list_node_reset
 doit source/codegen.c aws_text_detect_encoding
 
 # source/command_line_parser.c
