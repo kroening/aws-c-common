@@ -69,8 +69,8 @@ doit source/byte_buf.c aws_hash_array_ignore_case
 # source/cache.c
 
 # source/codegen.c
-skip source/codegen.c aws_array_list_clean_up LINKED_LIST
-skip source/codegen.c aws_array_list_clean_up_secure LINKED_LIST
+skip source/codegen.c source/allocator.c aws_array_list_clean_up SIMPLIFIER
+skip source/codegen.c source/allocator.c aws_array_list_clean_up_secure SIMPLIFIER
 doit source/codegen.c aws_array_list_init_dynamic
 doit source/codegen.c aws_is_mem_zeroed
 doit source/codegen.c aws_linked_list_is_valid_deep
