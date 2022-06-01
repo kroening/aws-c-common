@@ -169,7 +169,7 @@ doit source/process_common.c source/allocator.c aws_run_command_result_init
 # source/ring_buffer.c
 skip source/ring_buffer.c aws_ring_buffer_acquire SLOW
 skip source/ring_buffer.c aws_ring_buffer_clean_up SLOW
-skip source/ring_buffer.c aws_ring_buffer_init PROPERTYBUG
+skip source/ring_buffer.c source/allocator.c aws_ring_buffer_init SLOW
 skip source/ring_buffer.c aws_ring_buffer_release SLOW
 
 # source/statistics.c
