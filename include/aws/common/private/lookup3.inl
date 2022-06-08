@@ -323,6 +323,7 @@ static uint32_t hashlittle( const void *key, size_t length, uint32_t initval)
 
     /*------ all but last block: aligned reads and affect 32 bits of (a,b,c) */
     while (length > 12)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(k, length))
     {
       a += k[0];
       b += k[1];
@@ -397,6 +398,7 @@ static uint32_t hashlittle( const void *key, size_t length, uint32_t initval)
 
     /*--------------- all but last block: aligned reads and different mixing */
     while (length > 12)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(k, length))
     {
       a += k[0] + (((uint32_t)k[1])<<16);
       b += k[2] + (((uint32_t)k[3])<<16);
@@ -443,6 +445,7 @@ static uint32_t hashlittle( const void *key, size_t length, uint32_t initval)
 
     /*--------------- all but the last block: affect some 32 bits of (a,b,c) */
     while (length > 12)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(k, length))
     {
       a += k[0];
       a += ((uint32_t)k[1])<<8;
@@ -516,6 +519,7 @@ static void hashlittle2(
 
     /*------ all but last block: aligned reads and affect 32 bits of (a,b,c) */
     while (length > 12)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(k, length))
     {
       a += k[0];
       b += k[1];
@@ -591,6 +595,7 @@ static void hashlittle2(
 
     /*--------------- all but last block: aligned reads and different mixing */
     while (length > 12)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(k, length))
     {
       a += k[0] + (((uint32_t)k[1])<<16);
       b += k[2] + (((uint32_t)k[3])<<16);
@@ -637,6 +642,7 @@ static void hashlittle2(
 
     /*--------------- all but the last block: affect some 32 bits of (a,b,c) */
     while (length > 12)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(k, length))
     {
       a += k[0];
       a += ((uint32_t)k[1])<<8;
