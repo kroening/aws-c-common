@@ -119,7 +119,7 @@ skip source/hash_table.c aws_hash_table_clear LINKED_LIST
 skip source/hash_table.c aws_hash_table_eq LINKED_LIST
 skip source/hash_table.c aws_hash_table_find LINKED_LIST
 skip source/hash_table.c aws_hash_table_foreach LINKED_LIST
-skip source/hash_table.c aws_hash_table_init SLOW
+skip source/hash_table.c source/allocator.c aws_hash_table_init SLOW
 skip source/hash_table.c aws_hash_table_move LINKED_LIST
 skip source/hash_table.c aws_hash_table_remove LINKED_LIST
 skip source/hash_table.c aws_hash_table_remove_element LINKED_LIST
