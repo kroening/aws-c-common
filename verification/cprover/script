@@ -105,7 +105,7 @@ skip source/encoding.c aws_hex_encode_append_dynamic SLOW
 # source/fifo_cache.c
 
 # source/file.c
-skip source/file.c source/allocator.c source/byte_buf.c aws_byte_buf_init_from_file SLOW
+skip source/file.c source/allocator.c source/byte_buf.c source/logging.c aws_byte_buf_init_from_file SLOW
 skip source/file.c aws_directory_entry_iterator_destroy LINKED_LIST
 
 # source/hash_table.c
