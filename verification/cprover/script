@@ -94,7 +94,7 @@ doit source/date_time.c s_get_time_struct
 # source/device_random.c
 
 # source/encoding.c
-skip source/encoding.c aws_base64_decode SIMPLIFIER
+skip source/encoding.c aws_base64_decode SLOW
 skip source/encoding.c aws_base64_encode SLOW
 skip source/encoding.c aws_hex_decode SLOW
 skip source/encoding.c aws_hex_encode SLOW
