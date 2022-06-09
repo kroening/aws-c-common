@@ -22,8 +22,9 @@ int main() {
   }
   else
   {
-    __CPROVER_assume(list->alloc == aws_default_allocator());
-    __CPROVER_assume(__CPROVER_rw_ok(list->data, list->current_size));
+    list->alloc = aws_default_allocator();
+    list->data = malloc(list->current_size);
+    //__CPROVER_assume(!__CPROVER_same_object(list, list->data));
     // list->length * list->item_size < list->current_size
   }
 
