@@ -10,6 +10,12 @@
 //     struct aws_allocator *alloc,
 //     const char *filename);
 
+int my_errno;
+
+int *__error() {
+  return &my_errno;
+}
+
 int main() {
 
   struct aws_byte_buf *out_buf;
