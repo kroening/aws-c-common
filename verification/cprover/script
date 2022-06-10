@@ -62,7 +62,7 @@ skip source/byte_buf.c aws_byte_cursor_compare_lookup INVARIANT
 skip source/byte_buf.c aws_byte_cursor_find_exact SLOW
 skip source/byte_buf.c aws_byte_cursor_left_trim_pred INVARIANT
 skip source/byte_buf.c aws_byte_cursor_next_split HARNESS
-skip source/byte_buf.c aws_byte_cursor_right_trim_pred INVARIANT
+doit source/byte_buf.c aws_byte_cursor_right_trim_pred
 skip source/byte_buf.c aws_byte_cursor_split_on_char_n SLOW
 doit source/byte_buf.c aws_hash_array_ignore_case
 
