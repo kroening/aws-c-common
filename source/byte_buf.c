@@ -862,7 +862,9 @@ struct aws_byte_cursor aws_byte_cursor_left_trim_pred(
     AWS_PRECONDITION(predicate != NULL);
     struct aws_byte_cursor trimmed = *source;
 
-    while (trimmed.len > 0 && predicate(*(trimmed.ptr))) {
+    while (trimmed.len > 0 && predicate(*(trimmed.ptr)))
+      __CPROVER_loop_invariant(trimmed.len == 0 || __CPROVER_r_ok(trimmed.ptr, trimmed.len))
+    {
         --trimmed.len;
         ++trimmed.ptr;
     }
