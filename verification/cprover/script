@@ -38,7 +38,7 @@ skip source/allocator.c aws_mem_calloc SLOW
 skip source/allocator.c aws_mem_realloc SLOW
 
 # source/allocator_sba.c
-skip source/allocator_sba.c source/allocator.c aws_small_block_allocator_bytes_active SIMPLIFIER
+skip source/allocator_sba.c source/allocator.c aws_small_block_allocator_bytes_active SLOW
 skip source/allocator_sba.c aws_small_block_allocator_bytes_reserved SLOW
 skip source/allocator_sba.c aws_small_block_allocator_new SLOW
 
@@ -69,8 +69,8 @@ doit source/byte_buf.c aws_hash_array_ignore_case
 # source/cache.c
 
 # source/codegen.c
-skip source/codegen.c source/allocator.c aws_array_list_clean_up SIMPLIFIER
-skip source/codegen.c source/allocator.c aws_array_list_clean_up_secure SIMPLIFIER
+skip source/codegen.c source/allocator.c aws_array_list_clean_up BUG
+skip source/codegen.c source/allocator.c aws_array_list_clean_up_secure HARNESS
 doit source/codegen.c aws_array_list_init_dynamic
 doit source/codegen.c aws_is_mem_zeroed
 doit source/codegen.c aws_linked_list_is_valid_deep
@@ -105,7 +105,7 @@ skip source/encoding.c aws_hex_encode_append_dynamic SLOW
 # source/fifo_cache.c
 
 # source/file.c
-skip source/file.c source/allocator.c source/byte_buf.c aws_byte_buf_init_from_file SIMPLIFIER
+skip source/file.c source/allocator.c source/byte_buf.c aws_byte_buf_init_from_file SLOW
 skip source/file.c aws_directory_entry_iterator_destroy LINKED_LIST
 
 # source/hash_table.c
@@ -155,8 +155,8 @@ skip source/memtrace.c aws_mem_tracer_new VA_ARGS
 skip source/priority_queue.c aws_priority_queue_backpointers_valid_deep QUANTIFIERS
 skip source/priority_queue.c aws_priority_queue_init_dynamic SLOW
 doit source/priority_queue.c aws_priority_queue_init_static
-skip source/priority_queue.c source/array_list.c aws_priority_queue_pop SIMPLIFIER
-skip source/priority_queue.c source/array_list.c aws_priority_queue_remove SIMPLIFIER
+skip source/priority_queue.c source/array_list.c aws_priority_queue_pop SLOW
+skip source/priority_queue.c source/array_list.c aws_priority_queue_remove SLOW
 doit source/priority_queue.c aws_priority_queue_top
 
 # source/process_common.c
