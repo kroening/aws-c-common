@@ -199,4 +199,4 @@ doit source/uuid.c aws_uuid_to_str
 skip source/xml_parser.c aws_xml_node_traverse SLOW
 skip source/xml_parser.c aws_xml_parser_parse SLOW
 skip source/xml_parser.c s_advance_to_closing_tag LINKED_LIST
-skip source/xml_parser.c s_node_next_sibling SLOW
+skip source/xml_parser.c source/byte_buf.c source/logging.c s_node_next_sibling SLOW
