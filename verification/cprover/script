@@ -109,7 +109,7 @@ skip source/file.c source/allocator.c source/byte_buf.c source/logging.c aws_byt
 skip source/file.c aws_directory_entry_iterator_destroy LINKED_LIST
 
 # source/hash_table.c
-doit hash_little
+doit hashlittle
 skip source/hash_table.c aws_hash_byte_cursor_ptr SLOW
 doit source/hash_table.c aws_hash_callback_c_str_eq
 doit source/hash_table.c aws_hash_callback_string_eq
