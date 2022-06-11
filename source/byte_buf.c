@@ -926,6 +926,7 @@ int aws_byte_cursor_compare_lookup(
     const struct aws_byte_cursor *lhs,
     const struct aws_byte_cursor *rhs,
     const uint8_t *lookup_table) {
+
     AWS_PRECONDITION(aws_byte_cursor_is_valid(lhs));
     AWS_PRECONDITION(aws_byte_cursor_is_valid(rhs));
     AWS_PRECONDITION(AWS_MEM_IS_READABLE(lookup_table, 256));
@@ -942,7 +943,13 @@ int aws_byte_cursor_compare_lookup(
     const uint8_t *rhs_curr = rhs->ptr;
     const uint8_t *rhs_end = rhs_curr + rhs->len;
 
-    while (lhs_curr < lhs_end && rhs_curr < rhs_end) {
+    while (lhs_curr < lhs_end && rhs_curr < rhs_end)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(lookup_table, 0x100))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(lhs->ptr, lhs->len))
+      __CPROVER_loop_invariant(__CPROVER_r_ok(rhs->ptr, rhs->len))
+      __CPROVER_loop_invariant(__CPROVER_same_object(lhs->ptr, lhs_curr))
+      __CPROVER_loop_invariant(__CPROVER_same_object(rhs->ptr, rhs_curr))
+    {
         uint8_t lhc = lookup_table[*lhs_curr];
         uint8_t rhc = lookup_table[*rhs_curr];
 
@@ -969,7 +976,6 @@ int aws_byte_cursor_compare_lookup(
     if (rhs_curr < rhs_end) {
         return -1;
     }
-
     return 0;
 }
 
