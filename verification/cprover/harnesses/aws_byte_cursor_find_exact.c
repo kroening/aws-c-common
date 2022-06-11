@@ -18,7 +18,7 @@ int main() {
 
   __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(input_str));
   __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(to_find));
-  __CPROVER_assume(CPROVER_aws_byte_cursor_is_valid(first_find));
+  __CPROVER_assume(__CPROVER_w_ok(first_find));
 
   aws_byte_cursor_find_exact(input_str, to_find, first_find);
 

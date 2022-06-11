@@ -304,10 +304,11 @@ int aws_byte_cursor_find_exact(
     if (to_find->len < 1) {
         return aws_raise_error(AWS_ERROR_SHORT_BUFFER);
     }
-
     struct aws_byte_cursor working_cur = *input_str;
 
-    while (working_cur.len) {
+    while (working_cur.len)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(to_find->ptr, to_find->len))
+    {
         uint8_t *first_char_location = memchr(working_cur.ptr, (char)*to_find->ptr, working_cur.len);
 
         if (!first_char_location) {
