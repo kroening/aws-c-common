@@ -653,8 +653,11 @@ int aws_byte_buf_append_with_lookup(
 
     for (size_t i = 0; i < from->len; ++i)
       __CPROVER_loop_invariant(i>=0 && i<=from->len)
+      __CPROVER_loop_invariant(to->len <= to->capacity)
+      __CPROVER_loop_invariant(from->len <= to->capacity - to->len)
       __CPROVER_loop_invariant(__CPROVER_r_ok(from->ptr, from->len))
       __CPROVER_loop_invariant(__CPROVER_r_ok(lookup_table, 0x100))
+      __CPROVER_loop_invariant(to->capacity == 0 || __CPROVER_w_ok(to->buffer, to->capacity))
     {
         to->buffer[to->len + i] = lookup_table[from->ptr[i]];
     }
