@@ -35,7 +35,7 @@ if [ ! -e logs/. ] ; then mkdir logs ; fi
 doit source/allocator.c aws_mem_acquire
 skip source/allocator.c aws_mem_acquire_many VA_ARGS
 skip source/allocator.c aws_mem_calloc SLOW
-doit source/allocator.c aws_mem_realloc
+skip source/allocator.c aws_mem_realloc BUG
 
 # source/allocator_sba.c
 skip source/allocator_sba.c source/allocator.c aws_small_block_allocator_bytes_active SLOW
