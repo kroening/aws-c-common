@@ -14,6 +14,9 @@ int main() {
   const struct aws_byte_buf *date_str;
   enum aws_date_format fmt;
 
+  __CPROVER_assume(__CPROVER_rw_ok(dt));
+  __CPROVER_assume(CPROVER_aws_byte_buf_is_valid(date_str));
+
   aws_date_time_init_from_str(dt, date_str, fmt);
 
   return 0;
