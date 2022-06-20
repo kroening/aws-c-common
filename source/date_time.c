@@ -321,7 +321,10 @@ static int s_parse_iso_8601(const struct aws_byte_cursor *date_str_cursor, struc
 
     AWS_ZERO_STRUCT(*parsed_time);
 
-    while (state < FINISHED && !error && index < date_str_cursor->len) {
+    while (state < FINISHED && !error && index < date_str_cursor->len)
+      __CPROVER_loop_invariant(__CPROVER_r_ok(date_str_cursor))
+      __CPROVER_loop_invariant(date_str_cursor->len==0 || __CPROVER_r_ok(date_str_cursor->ptr, date_str_cursor->len))
+    {
         char c = date_str_cursor->ptr[index];
         switch (state) {
             case ON_YEAR:
