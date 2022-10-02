@@ -50,7 +50,7 @@ doit source/byte_buf.c aws_array_eq_c_str
 doit source/byte_buf.c aws_array_eq_c_str_ignore_case
 doit source/byte_buf.c aws_array_eq_ignore_case
 doit source/byte_buf.c aws_byte_buf_advance
-doit source/byte_buf.c aws_byte_buf_append_with_lookup
+skip source/byte_buf.c aws_byte_buf_append_with_lookup TBD
 skip source/byte_buf.c aws_byte_buf_cat VA_ARGS
 doit source/byte_buf.c aws_byte_buf_init
 skip source/byte_buf.c aws_byte_buf_init_cache_and_update_cursors VA_ARGS
